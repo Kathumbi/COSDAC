@@ -1,15 +1,36 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Clock, BookOpen, Church } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const scheduleItems = [
-  { time: "9:00 AM", title: "Sabbath School", icon: Clock },
-  { time: "10:00 AM", title: "Lesson Study", icon: BookOpen },
-  { time: "11:00 AM", title: "Divine Hour", icon: Church },
-  { time: "2:00 PM", title: "Afternoon & Bible Study", icon: BookOpen },
+  {
+    time: "9:00 AM",
+    title: "Sabbath School",
+    icon: Clock,
+    description: "A time to study the Word and grow spiritually with fellow members."
+  },
+  {
+    time: "10:00 AM",
+    title: "Lesson Study",
+    icon: BookOpen,
+    description: "Deep dive into Bible lessons with discussion and reflection."
+  },
+  {
+    time: "11:00 AM",
+    title: "Divine Hour",
+    icon: Church,
+    description: "Main worship service with singing, preaching, and prayers."
+  },
+  {
+    time: "2:00 PM",
+    title: "Afternoon & Bible Study",
+    icon: BookOpen,
+    description: "Fellowship, Bible study, and interactive group activities."
+  },
 ];
 
 // animation variants
@@ -23,6 +44,8 @@ const fadeUp = {
 };
 
 const SabbathScheduleSection = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
     <section className="relative py-16 md:py-24 bg-white overflow-hidden">
       <div className="container relative z-10">
@@ -33,11 +56,7 @@ const SabbathScheduleSection = () => {
           className="max-w-4xl mx-auto"
         >
           {/* Heading */}
-          <motion.div
-            variants={fadeUp}
-            custom={0}
-            className="text-center mb-8"
-          >
+          <motion.div variants={fadeUp} custom={0} className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-semibold mb-3 text-gray-900">
               Sabbath Schedule
             </h2>
@@ -58,7 +77,10 @@ const SabbathScheduleSection = () => {
                 key={item.title}
                 variants={fadeUp}
                 custom={index + 1}
-                className="bg-white border rounded-lg p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+                className="bg-white border rounded-lg p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                onClick={() =>
+                  setOpenIndex(openIndex === index ? null : index)
+                }
               >
                 <div className="flex items-center gap-4">
                   <div className="bg-primary/10 p-3 rounded-full">
@@ -71,6 +93,20 @@ const SabbathScheduleSection = () => {
                     <p className="text-gray-800 font-medium">{item.title}</p>
                   </div>
                 </div>
+
+                {/* Animated Description */}
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={
+                    openIndex === index
+                      ? { opacity: 1, height: "auto" }
+                      : { opacity: 0, height: 0 }
+                  }
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="overflow-hidden mt-4 text-gray-700"
+                >
+                  {item.description}
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
@@ -81,13 +117,13 @@ const SabbathScheduleSection = () => {
             custom={5}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Link to="/about">
+            <Link to="/beliefs">
               <Button
                 variant="cta"
                 size="lg"
                 className="w-full sm:w-auto transition-transform hover:scale-105"
               >
-                About Our Church
+                About Our Church (Seventh-day Adventist)
               </Button>
             </Link>
             <a
