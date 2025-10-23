@@ -6,7 +6,8 @@ import SabbathScheduleSection from "@/components/sections/SabbathScheduleSection
 import LiveSermonsSection from "@/components/sections/LiveSermonsSection";
 import LeadershipSection from "@/components/sections/LeadershipSection";
 import EventsSection from "@/components/sections/EventsSection";
-import CombinedPage from "@/components/sections/combinedPage";
+import CombinedPage from "@/components/sections/CombinedPage";
+
 
 const Index = () => {
   const jsonLd = {

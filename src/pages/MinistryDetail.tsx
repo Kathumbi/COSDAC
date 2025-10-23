@@ -64,9 +64,8 @@ const MinistryDetail = () => {
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
               whileHover={{ scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 200, damping: 15 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.4 + index * 0.1, duration: 0.5 }}
               className="flex-1 overflow-hidden rounded-xl"
             >
               <img
