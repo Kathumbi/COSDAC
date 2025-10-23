@@ -1,13 +1,10 @@
 import Seo from "@/components/Seo";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import HeroSlider from "@/components/HeroSlider";
 import SabbathScheduleSection from "@/components/sections/SabbathScheduleSection";
 import LiveSermonsSection from "@/components/sections/LiveSermonsSection";
 import LeadershipSection from "@/components/sections/LeadershipSection";
 import EventsSection from "@/components/sections/EventsSection";
 import CombinedPage from "@/components/sections/CombinedPage";
-
 
 const Index = () => {
   const jsonLd = {
@@ -35,7 +32,7 @@ const Index = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Header />
+      {/* REMOVED: <Header /> */}
       <main>
         <HeroSlider />
         <SabbathScheduleSection />
@@ -43,7 +40,7 @@ const Index = () => {
         <LeadershipSection />
         <LiveSermonsSection />
       </main>
-      <Footer />
+      {/* REMOVED: <Footer /> */}
     </>
   );
 };
