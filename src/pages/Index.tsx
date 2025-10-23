@@ -6,7 +6,7 @@ import SabbathScheduleSection from "@/components/sections/SabbathScheduleSection
 import LiveSermonsSection from "@/components/sections/LiveSermonsSection";
 import LeadershipSection from "@/components/sections/LeadershipSection";
 import EventsSection from "@/components/sections/EventsSection";
-import CTABanner from "@/components/sections/CTABanner";
+import CombinedPage from "@/components/sections/combinedPage";
 
 const Index = () => {
   const jsonLd = {
@@ -14,7 +14,7 @@ const Index = () => {
     "@type": "Church",
     name: "Cornerstone SDA Church Nairobi",
     address: { "@type": "PostalAddress", addressLocality: "Nairobi", addressCountry: "KE" },
-    url: typeof window !== 'undefined' ? window.location.origin : "",
+    url: typeof window !== "undefined" ? window.location.origin : "",
     sameAs: [
       "https://facebook.com/",
       "https://instagram.com/",
@@ -29,16 +29,18 @@ const Index = () => {
         description="Worship with us in Nairobi. Watch live sermons, explore ministries, see upcoming events, and get involved at Cornerstone SDA Church."
       />
 
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       <Header />
       <main>
         <HeroSlider />
         <SabbathScheduleSection />
-        <LiveSermonsSection />
+        <CombinedPage />
         <LeadershipSection />
-        <EventsSection />
-        <CTABanner />
+        <LiveSermonsSection />
       </main>
       <Footer />
     </>

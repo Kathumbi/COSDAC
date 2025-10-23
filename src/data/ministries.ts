@@ -1,44 +1,69 @@
-// src/data/ministries.ts
-import { BookOpen, Users, Music, HandHeart, HeartHandshake, Sparkles } from "lucide-react";
-import youthImage from "@/assets/ministry-youth.jpg";
-import womenImage from "@/assets/ministry-women.jpg";
-import stewardshipImage from "@/assets/ministry-stewardship.jpg";
-import childrenImage from "@/assets/ministry-children.jpg";
-import musicImage from "@/assets/ministry-music.jpg";
-import bibleStudyImage from "@/assets/ministry-bible-study.jpg";
-
 export const ministries = [
   {
-    name: "Children’s Ministry",
-    icon: Sparkles,
+    name: "Children's Ministry",
     blurb: "Building a Christ-centered foundation for our youngest members.",
-    description:
-      "The Children’s Ministry focuses on nurturing kids in the love and teachings of Jesus. Through engaging Sabbath School lessons, songs, crafts, and interactive Bible stories, we help children grow in faith and character. We also equip parents and guardians with resources for spiritual parenting.",
-    image: childrenImage,
+    description: "The Children's Ministry focuses on nurturing kids in the love and teachings of Jesus through engaging activities, Bible stories, and fun learning experiences. We provide a safe and welcoming environment where children can grow in their relationship with God and build lasting friendships.",
+    images: [
+      "/ImageUploads/ministries/ChildrenMinistry/Children1.jpg",
+      "/ImageUploads/ministries/ChildrenMinistry/Children2.jpg",
+      "/ImageUploads/ministries/ChildrenMinistry/Children3.jpg",
+    ],
+    resources: [
+      { title: "More Resources", url: "https://children.adventist.org/" },
+      { title: "Activity Sheets", url: "https://children.adventist.org/resources/" }
+    ],
   },
   {
     name: "Young Adults Ministry",
-    icon: Users,
     blurb: "Empowering young people to grow in faith, service, and leadership.",
-    description:
-      "The Youth Ministry exists to inspire and nurture the spiritual, social, and mental growth of young people. Through mentorship, Bible study, community service, and fun fellowship, we help the youth discover their purpose in Christ and become active members of the church and society.",
-    image: youthImage,
+    description: "The Young Adults Ministry exists to inspire and nurture the spiritual, social, and mental growth of our youth. We provide a platform for young people to connect, serve, and develop their God-given talents through various programs, retreats, and community outreach activities.",
+    images: [
+      "/ImageUploads/ministries/YoungAdultsMinistry/Youth1.jpg",
+      "/ImageUploads/ministries/YoungAdultsMinistry/Youth2.jpg",
+      "/ImageUploads/ministries/YoungAdultsMinistry/Youth3.jpg",
+    ],
+    resources: [
+      { title: "GC Youth Ministries", url: "https://www.gcyouthministries.org/" },
+      { title: "Youth Bible Studies", url: "https://www.adventistyouth.org/" }
+    ],
   },
   {
-    name: "Adventist Women’s Ministry",
-    icon: HandHeart,
+    name: "Women's Ministry",
     blurb: "Encouraging women to deepen their faith and impact their families and communities.",
-    description:
-      "The Women’s Ministry is a vibrant community where women of all ages come together to pray, study the Word, and serve others. We aim to uplift, empower, and equip women to live out their God-given purpose—at home, in the church, and in the world. Our programs include retreats, outreach, and mentorship initiatives.",
-    image: womenImage,
+    description: "The Women's Ministry is a vibrant community where women of all ages come together for fellowship, spiritual growth, and mutual support. Through Bible studies, prayer groups, and outreach programs, we empower women to live out their faith in practical ways and make a difference in their circles of influence.",
+    images: [
+      "/ImageUploads/ministries/WomensMinistry/Awo1.jpg",
+      "/ImageUploads/ministries/WomensMinistry/Awo2.jpg",
+      "/ImageUploads/ministries/WomensMinistry/Awo3.jpg",
+    ],
+    resources: [
+      { title: "Adventist Women Ministries", url: "https://women.adventist.org/" },
+      { title: "Women's Devotional", url: "https://women.adventist.org/devotionals" }
+    ],
   },
   {
-    name: "Adventist Men Ministry",
-    icon: HeartHandshake,
-    blurb: "Promoting faithful management of God’s resources—time, talents, and treasures.",
-    description:
-      "The Stewardship Ministry helps members recognize that all we have belongs to God. We encourage faithful giving, responsible use of time and talents, and living a life that honors God through integrity, gratitude, and service. Workshops and campaigns remind us that stewardship is a lifestyle, not an event.",
-    image: stewardshipImage,
+    name: "Men's Ministry",
+    blurb: "Strengthening men in their spiritual journey and leadership roles.",
+    description: "The Men's Ministry helps members recognize that all we have belongs to God and promotes faithful stewardship of time, talents, and treasures. We focus on developing godly character, strong family leadership, and service-oriented hearts through fellowship, accountability, and practical discipleship.",
+    images: [
+      "/ImageUploads/ministries/MensMinistry/Amo1.jpg",
+      "/ImageUploads/ministries/MensMinistry/Amo2.jpg",
+      "/ImageUploads/ministries/MensMinistry/Amo3.jpg",
+    ],
+    resources: [
+      {
+        title: "Adventist Men Organisation Doc",
+        url: "https://www.scribd.com/document/365154829/ADVENTIST-MEN-ORGANISATION-docx",
+      },
+      { title: "Men's Bible Study", url: "https://www.adventistmen.org/" }
+    ],
   },
-  
 ];
+
+export type Ministry = {
+  name: string;
+  blurb: string;
+  description: string;
+  images: string[];
+  resources: { title: string; url: string }[];
+};

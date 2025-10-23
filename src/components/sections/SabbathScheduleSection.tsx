@@ -5,31 +5,43 @@ import { Button } from "@/components/ui/button";
 import { Clock, BookOpen, Church } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 const scheduleItems = [
   {
     time: "9:00 AM",
     title: "Sabbath School",
     icon: Clock,
-    description: "A time to study the Word and grow spiritually with fellow members."
+    description:
+      "A time to study the Word and grow spiritually with fellow members.",
   },
   {
     time: "10:00 AM",
     title: "Lesson Study",
     icon: BookOpen,
-    description: "Deep dive into Bible lessons with discussion and reflection."
+    description: "Deep dive into Bible lessons with discussion and reflection.",
   },
   {
     time: "11:00 AM",
     title: "Divine Hour",
     icon: Church,
-    description: "Main worship service with singing, preaching, and prayers."
+    description: "Main worship service with singing, preaching, and prayers.",
   },
   {
     time: "2:00 PM",
     title: "Afternoon & Bible Study",
     icon: BookOpen,
-    description: "Fellowship, Bible study, and interactive group activities."
+    description: "Fellowship, Bible study, and interactive group activities.",
   },
 ];
 
@@ -45,6 +57,34 @@ const fadeUp = {
 
 const SabbathScheduleSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [open, setOpen] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+    visit: false,
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!form.message.trim()) {
+      alert("Please share your prayer request before submitting 🙏");
+      return;
+    }
+
+    console.log("Prayer Request Submitted:", form);
+    alert("🙏 Your prayer request has been received. Thank you!");
+    setOpen(false);
+    setForm({ name: "", phone: "", email: "", message: "", visit: false });
+  };
 
   return (
     <section className="relative py-16 md:py-24 bg-white overflow-hidden">
@@ -117,15 +157,16 @@ const SabbathScheduleSection = () => {
             custom={5}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Link to="/beliefs">
-              <Button
-                variant="cta"
-                size="lg"
-                className="w-full sm:w-auto transition-transform hover:scale-105"
-              >
-                About Our Church (Seventh-day Adventist)
-              </Button>
-            </Link>
+            {/* Replaced About button with Request Prayer */}
+            <Button
+              variant="cta"
+              size="lg"
+              className="w-full sm:w-auto transition-transform hover:scale-105"
+              onClick={() => setOpen(true)}
+            >
+              Request Prayer
+            </Button>
+
             <a
               href="https://maps.google.com/?q=Cornerstone+SDA+Church+Nairobi"
               target="_blank"
@@ -142,6 +183,63 @@ const SabbathScheduleSection = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Prayer Request Modal */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>🙏 Share a Prayer Request</DialogTitle>
+          </DialogHeader>
+
+          <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+            <Input
+              name="name"
+              placeholder="Your Name (optional)"
+              value={form.name}
+              onChange={handleChange}
+            />
+            <Input
+              name="phone"
+              placeholder="Phone Number (optional)"
+              value={form.phone}
+              onChange={handleChange}
+            />
+            <Input
+              name="email"
+              type="email"
+              placeholder="Email (optional)"
+              value={form.email}
+              onChange={handleChange}
+            />
+            <Textarea
+              name="message"
+              placeholder="Your Prayer Request (required)"
+              value={form.message}
+              onChange={handleChange}
+              required
+            />
+
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="visit"
+                checked={form.visit}
+                onCheckedChange={(checked) =>
+                  setForm({ ...form, visit: !!checked })
+                }
+              />
+              <Label htmlFor="visit" className="text-sm">
+                I would like a visit from the eldership team
+              </Label>
+            </div>
+
+            <DialogFooter>
+              <Button type="submit" className="w-full">
+                Submit Request
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

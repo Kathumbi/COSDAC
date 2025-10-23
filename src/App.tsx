@@ -13,6 +13,9 @@ import Ministries from "./pages/ministries";           // Ministries list page
 import MinistryDetail from "./pages/MinistryDetail";   // Ministry detail page
 import PrayerCells from "@/pages/PrayerCells";
 import Beliefs from "./pages/Beliefs";
+import EventsPage from "./pages/Events";
+import ChurchBulletins from "./pages/ChurchBulletins";
+import Gallery from "./pages/Gallery";
 
 const queryClient = new QueryClient();
 
@@ -26,11 +29,15 @@ const App = () => (
           {/* Homepage */}
           <Route path="/" element={<Index />} />
 
-          {/* Ministries pages */}
+          {/*  pages */}
           <Route path="/ministries" element={<Ministries />} />             {/* List */}
           <Route path="/ministries/:name" element={<MinistryDetail />} />   {/* Detail */}
           <Route path="/prayer-cells" element={<PrayerCells />} />  {/* ✅ NEW PAGE */}
           <Route path="/beliefs" element={<Beliefs />} />  {/* ✅ NEW PAGE */}
+          <Route path="/events" element={<EventsPage />} />  {/* ✅ NEW PAGE */}
+          <Route path="/church-bulletins" element={<ChurchBulletins />} />  {/* ✅ NEW PAGE */}
+          <Route path="/gallery" element={<Gallery />} />  {/* ✅ NEW PAGE */}
+
 
           {/* Catch-all 404 */}
           <Route path="*" element={<NotFound />} />

@@ -11,28 +11,28 @@ interface Leader {
 const leaders: Leader[] = [
   {
     name: "Pr. Zachary Muthomi",
-    title: "Senior Pastor",
-    image: "/Image uploads/Zachary Muthomi.jpg",
-    description: "Spiritual leader guiding our congregation",
-    email: "pastor@cornerstonesda.org",
+    title: "Church Pastor",
+    image: "/ImageUploads/Zachary Muthomi.jpg",
+    description: "",
+    email: "",
   },
   {
     name: "Elder Moses Nturo",
     title: "Head Elder 2025",
-    image: "/Image uploads/Moses Nturo.jpg",
-    description: "Supporting spiritual growth and care",
+    image: "/ImageUploads/Moses Nturo.jpg",
+    description: "",
   },
   {
     name: "Josephat Kombo",
     title: "Church Treasurer",
-    image: "/Image uploads/Josephat Kombo.jpg",
-    description: "Managing church finances with integrity",
+    image: "/ImageUploads/Josephat Kombo.jpg",
+    description: "",
   },
   {
     name: "Lavender Olango",
     title: "Church Clerk",
-    image: "/Image uploads/Lavender Olango.jpg",
-    description: "Maintaining church records and communication",
+    image: "/ImageUploads/Lavender Olango.jpg",
+    description: "",
   },
 ];
 

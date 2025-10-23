@@ -7,9 +7,13 @@ const Footer = () => {
       <div className="container py-12 grid gap-8 md:grid-cols-3">
         <div>
           <h3 className="font-display text-xl mb-3">Cornerstone SDA Church Nairobi</h3>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground mb-4">
             Worship with us and be part of a vibrant, Christ-centered community.
           </p>
+          {/* Church Bulletins section moved here */}
+          <a href="/church-bulletins" className="text-sm text-primary hover:underline font-medium">
+            Church Bulletins
+          </a>
         </div>
         <div>
           <h4 className="font-medium mb-3">Contact</h4>
@@ -37,7 +41,7 @@ const Footer = () => {
       <div className="border-t">
         <div className="container py-6 text-xs text-muted-foreground flex items-center justify-between">
           <span>© {new Date().getFullYear()} Cornerstone SDA Church- Nairobi. All rights reserved.</span>
-          <a href="#newsletter" className="story-link">Newsletter</a>
+          {/* Removed Church Bulletins from here */}
         </div>
       </div>
     </footer>
