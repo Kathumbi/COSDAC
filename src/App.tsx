@@ -20,7 +20,18 @@ import EventsPage from "./pages/Events";
 import ChurchBulletins from "./pages/ChurchBulletins";
 import Gallery from "./pages/Gallery";
 
-const queryClient = new QueryClient();
+// Optimized QueryClient for mobile performance
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // Better for mobile data usage and performance
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      gcTime: 10 * 60 * 1000, // 10 minutes
+      retry: 1, // Fewer retries on mobile networks
+      refetchOnWindowFocus: false, // Better for mobile UX
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -28,6 +39,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        {/* You could add a mobile detection context here if needed */}
         <Layout>
           <Routes>
             <Route path="/" element={<Index />} />
@@ -38,6 +50,7 @@ const App = () => (
             <Route path="/events" element={<EventsPage />} />
             <Route path="/church-bulletins" element={<ChurchBulletins />} />
             <Route path="/gallery" element={<Gallery />} />
+            {/* Add any additional mobile-specific routes if needed */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>

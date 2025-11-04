@@ -38,57 +38,69 @@ const leaders: Leader[] = [
 
 const LeadershipSection = () => {
   return (
-    <section className="bg-muted/30 py-16 md:py-24 fade-in-up">
-      <div className="container">
+    <section className="bg-muted/30 py-12 sm:py-16 md:py-24">
+      <div className="container px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-12 fade-in-up">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-3">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 sm:mb-4">
             Church Leadership 2025
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm sm:text-base max-w-2xl mx-auto px-4">
             Our dedicated church leaders guide us in faith, service, and love.
           </p>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {leaders.map((leader, index) => (
             <Card
               key={leader.name}
-              className="hover:shadow-lg hover:scale-[1.03] transition-all duration-500 ease-out fade-in-up rounded-xl overflow-hidden"
-              style={{ animationDelay: `${index * 0.15}s` }}
+              className="hover:shadow-lg hover:scale-[1.02] sm:hover:scale-[1.03] transition-all duration-500 ease-out rounded-xl overflow-hidden border-border/50"
             >
-              <div className="aspect-square overflow-hidden relative group">
-                <img
-                  src={leader.image}
-                  alt={`${leader.name} - ${leader.title}`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                  loading="lazy"
-                />
-                {/* Overlay hover effect */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </div>
-              <CardContent className="p-5 text-center">
-                <h3 className="font-semibold text-lg mb-1">{leader.name}</h3>
-                <p className="text-primary text-sm font-medium mb-2">
-                  {leader.title}
-                </p>
-                {leader.description && (
-                  <p className="text-muted-foreground text-sm mb-2">
-                    {leader.description}
+              <div className="p-4 sm:p-5 md:p-6 pb-3 sm:pb-4 flex flex-col items-center">
+                {/* Circular Image Container */}
+                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full overflow-hidden relative group mb-3 sm:mb-4 border-3 sm:border-4 border-muted">
+                  <img
+                    src={leader.image}
+                    alt={`${leader.name} - ${leader.title}`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                    loading="lazy"
+                  />
+                  {/* Overlay hover effect */}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                
+                <CardContent className="p-0 text-center space-y-1 sm:space-y-2">
+                  <h3 className="font-semibold text-base sm:text-lg md:text-lg leading-tight">
+                    {leader.name}
+                  </h3>
+                  <p className="text-primary text-xs sm:text-sm font-medium">
+                    {leader.title}
                   </p>
-                )}
-                {leader.email && (
-                  <a
-                    href={`mailto:${leader.email}`}
-                    className="text-xs text-primary hover:underline"
-                  >
-                    {leader.email}
-                  </a>
-                )}
-              </CardContent>
+                  {leader.description && (
+                    <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
+                      {leader.description}
+                    </p>
+                  )}
+                  {leader.email && (
+                    <a
+                      href={`mailto:${leader.email}`}
+                      className="text-xs text-primary hover:underline block mt-1"
+                    >
+                      {leader.email}
+                    </a>
+                  )}
+                </CardContent>
+              </div>
             </Card>
           ))}
+        </div>
+
+        {/* Mobile-friendly additional spacing */}
+        <div className="mt-8 sm:mt-12 md:mt-16 text-center">
+          <p className="text-muted-foreground text-xs sm:text-sm">
+            Tap on cards to learn more about our leaders
+          </p>
         </div>
       </div>
     </section>

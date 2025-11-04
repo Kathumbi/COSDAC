@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
   "/ImageUploads/gallery/pic1.JPG",
@@ -15,7 +14,6 @@ const images = [
 
 const Gallery = () => {
   const [index, setIndex] = useState(0);
-  const navigate = useNavigate();
 
   // Auto-slide every 5s
   useEffect(() => {
@@ -29,52 +27,42 @@ const Gallery = () => {
   const prev = () => setIndex((p) => (p - 1 + images.length) % images.length);
 
   return (
-    <div className="min-h-screen bg-gray-50 relative">
-      {/* 🌄 Hero Section */}
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50/30">
+      {/* Header Section */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative h-64 md:h-80 w-full overflow-hidden"
+        className="relative bg-gradient-to-r from-primary/90 to-primary/70 text-white py-12 sm:py-16 md:py-20"
       >
-        <img
-          src="/ImageUploads/gallery.jpg"
-          alt="Church Gallery Banner"
-          className="w-full h-full object-cover brightness-75"
-        />
-
-        {/* ✅ Back Button */}
-        <button
-          onClick={() => {
-            if (window.history.state && window.history.length > 1) {
-              navigate(-1);
-            } else {
-              navigate("/");
-            }
-          }}
-          className="absolute top-4 left-4 flex items-center gap-2 bg-white/90 hover:bg-white text-gray-800 px-4 py-2 rounded-full shadow-md transition-transform duration-300 hover:scale-105 z-10"
-        >
-          <ArrowLeft className="w-4 h-4" /> Back
-        </button>
-
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
-          <h1 className="text-4xl md:text-5xl font-bold drop-shadow-lg">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 font-display"
+          >
             Church Gallery
-          </h1>
-          <p className="text-lg md:text-xl mt-4 drop-shadow-lg max-w-2xl px-4">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed"
+          >
             A glimpse into our moments of worship, service, and fellowship
-          </p>
+          </motion.p>
         </div>
       </motion.div>
 
       {/* Main Content */}
-      <section className="container py-12 md:py-20 max-w-7xl mx-auto">
+      <section className="container py-12 sm:py-16 md:py-20 max-w-7xl mx-auto px-4 sm:px-6">
         {/* Gallery Carousel */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="relative w-full max-w-6xl mx-auto overflow-hidden rounded-2xl border border-gray-200 shadow-xl bg-white"
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="relative w-full max-w-6xl mx-auto overflow-hidden rounded-2xl border border-gray-200 shadow-2xl bg-white"
         >
           <AnimatePresence mode="wait">
             <motion.img
@@ -84,8 +72,8 @@ const Gallery = () => {
               initial={{ opacity: 0, scale: 1.03 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.7, ease: "easeInOut" }}
-              className="w-full h-[400px] md:h-[520px] lg:h-[600px] object-cover"
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="w-full h-[400px] sm:h-[500px] md:h-[600px] object-cover"
             />
           </AnimatePresence>
 
@@ -95,7 +83,7 @@ const Gallery = () => {
             onClick={prev}
             className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
           >
-            <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+            <ChevronLeft className="w-6 h-6" />
           </button>
 
           <button
@@ -103,7 +91,7 @@ const Gallery = () => {
             onClick={next}
             className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
           >
-            <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+            <ChevronRight className="w-6 h-6" />
           </button>
 
           {/* Navigation Dots */}
@@ -134,7 +122,7 @@ const Gallery = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
+          transition={{ delay: 0.7, duration: 0.6 }}
           className="text-center mt-12 max-w-3xl mx-auto"
         >
           <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">
@@ -151,14 +139,16 @@ const Gallery = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
+          transition={{ delay: 0.9, duration: 0.6 }}
           className="mt-12 grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto"
         >
           {images.map((image, i) => (
-            <button
+            <motion.button
               key={i}
               onClick={() => setIndex(i)}
-              className={`relative aspect-square overflow-hidden rounded-lg border-2 transition-all duration-300 hover:scale-105 ${
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`relative aspect-square overflow-hidden rounded-lg border-2 transition-all duration-300 ${
                 i === index 
                   ? "border-primary shadow-lg" 
                   : "border-gray-200 hover:border-gray-300"
@@ -172,7 +162,7 @@ const Gallery = () => {
               {i === index && (
                 <div className="absolute inset-0 bg-primary/20" />
               )}
-            </button>
+            </motion.button>
           ))}
         </motion.div>
       </section>

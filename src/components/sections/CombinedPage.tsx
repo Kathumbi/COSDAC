@@ -5,18 +5,25 @@ import GallerySection from "./GallerySection";
 
 const CombinedPage = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
-      {/* Outer bordered wrapper */}
-      <div className="border border-border/40 rounded-2xl shadow-md bg-white overflow-hidden">
-        <div className="grid md:grid-cols-2 gap-8 items-start p-6">
-          {/* Left side – Events */}
-          <div className="w-full">
-            <EventsSection />
-          </div>
+    <div className="min-h-screen bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="border border-border/40 rounded-xl sm:rounded-2xl shadow-sm sm:shadow-md bg-card/50 backdrop-blur-sm overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 p-4 sm:p-6 lg:p-8">
+            
+            {/* Events Section */}
+            <div className="w-full">
+              <div className="sticky top-6">
+                <EventsSection />
+              </div>
+            </div>
 
-          {/* Right side – Gallery */}
-          <div className="w-full">
-            <GallerySection />
+            {/* Gallery Section */}
+            <div className="w-full">
+              <div className="sticky top-6">
+                <GallerySection />
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

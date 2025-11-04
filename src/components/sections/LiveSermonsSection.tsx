@@ -14,16 +14,22 @@ const sermons = [
 const LiveSermonsSection = () => {
   return (
     <section id="sermons" className="bg-muted/30 border-y overflow-hidden">
-      <div className="container py-16 md:py-24">
+      <div className="container px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <AnimatedSection>
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            
             {/* Left: Live Stream */}
-            <div>
-              <h2 className="text-3xl md:text-4xl font-semibold mb-4">Watch Live</h2>
-              <p className="text-muted-foreground mb-6">
-                Join our Sabbath service live stream and be part of uplifting worship and the Word.
-              </p>
-              <div className="aspect-video w-full overflow-hidden rounded-lg border shadow-lg hover:shadow-xl transition-shadow duration-500">
+            <div className="w-full order-2 lg:order-1">
+              <div className="text-center lg:text-left mb-6 lg:mb-8">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 sm:mb-4">
+                  Watch Live
+                </h2>
+                <p className="text-muted-foreground text-sm sm:text-base">
+                  Join our Sabbath service live stream and be part of uplifting worship and the Word.
+                </p>
+              </div>
+              
+              <div className="aspect-video w-full overflow-hidden rounded-lg sm:rounded-xl border shadow-sm hover:shadow-lg transition-shadow duration-500">
                 <iframe
                   title="Cornerstone SDA Church- Nairobi Live Stream"
                   src={YOUTUBE_LIVE_EMBED}
@@ -33,24 +39,50 @@ const LiveSermonsSection = () => {
                   className="h-full w-full"
                 />
               </div>
+
+              {/* Mobile Buttons - Only show on mobile below video */}
+              <div className="flex flex-col sm:flex-row gap-3 mt-6 lg:hidden">
+                <a href={YOUTUBE_LIVE_EMBED} target="_blank" rel="noreferrer" className="flex-1">
+                  <Button variant="hero" className="w-full transition-transform duration-300 active:scale-95">
+                    Watch Live
+                  </Button>
+                </a>
+                <a href={YOUTUBE_CHANNEL} target="_blank" rel="noreferrer" className="flex-1">
+                  <Button variant="outline" className="w-full transition-transform duration-300 active:scale-95">
+                    View Archive
+                  </Button>
+                </a>
+              </div>
             </div>
 
             {/* Right: Recent Sermons */}
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Recent Sermons</h3>
-              <ul className="space-y-3">
+            <div className="w-full order-1 lg:order-2">
+              <div className="text-center lg:text-left mb-6 lg:mb-8">
+                <h3 className="text-xl sm:text-2xl font-semibold mb-3">Recent Sermons</h3>
+                <p className="text-muted-foreground text-sm sm:text-base lg:hidden">
+                  Tap on any sermon to watch
+                </p>
+              </div>
+              
+              <ul className="space-y-3 sm:space-y-4">
                 {sermons.map((s, i) => (
                   <AnimatedSection key={i} delay={0.1 * i}>
-                    <li className="p-4 rounded-md border bg-background hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                    <li className="p-3 sm:p-4 rounded-lg border bg-background hover:shadow-md active:scale-[0.98] lg:hover:-translate-y-1 transition-all duration-300">
                       <a href={s.url} target="_blank" rel="noreferrer" className="block">
-                        <p className="font-medium text-primary hover:underline">{s.title}</p>
-                        <p className="text-sm text-muted-foreground">{s.speaker} • {s.date}</p>
+                        <p className="font-medium text-primary text-sm sm:text-base hover:underline line-clamp-2">
+                          {s.title}
+                        </p>
+                        <p className="text-xs sm:text-sm text-muted-foreground mt-1">
+                          {s.speaker}
+                        </p>
                       </a>
                     </li>
                   </AnimatedSection>
                 ))}
               </ul>
-              <div className="mt-6 flex items-center gap-3">
+
+              {/* Desktop Buttons - Only show on desktop */}
+              <div className="hidden lg:flex items-center gap-3 mt-6">
                 <a href={YOUTUBE_LIVE_EMBED} target="_blank" rel="noreferrer">
                   <Button variant="hero" className="transition-transform duration-300 hover:scale-105">
                     Watch Live
@@ -61,6 +93,13 @@ const LiveSermonsSection = () => {
                     View Archive
                   </Button>
                 </a>
+              </div>
+
+              {/* Mobile hint */}
+              <div className="lg:hidden text-center mt-6">
+                <p className="text-xs text-muted-foreground">
+                  More sermons available on our YouTube channel
+                </p>
               </div>
             </div>
           </div>
